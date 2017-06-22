@@ -1,0 +1,147 @@
+*{margin: 0; padding: 0; }
+html {
+    line-height: 1.15;
+}
+a{
+    text-decoration: none;
+}
+.box{
+    max-width: 640px;
+}
+.fixed-bottom{
+    position: fixed;
+    width:100%;
+    bottom:0;
+    left:0;
+    border-radius: 0;
+}
+.relative{
+    position: relative;
+}
+.overflow-hidden{
+    overflow: hidden;
+}
+.flex-wrp {
+    display: flex;
+}
+.flex-flow-row{
+    flex-flow: row;
+    flex-wrap: wrap;
+}
+
+.equal {
+   flex: 1;
+}
+.am-list-item .am-list-line .am-list-extra{
+    flex-basis: 50%!important;
+}
+.equal-no {
+   flex: none;
+}
+.flex-cell{
+    flex-direction:column;
+}
+.flex-center{
+    justify-content: center;
+    align-items: center;
+}
+.flex-align-center{
+    align-items: center;
+}
+.flex-align-stretch{
+    align-items: stretch;
+}
+.flex-end{
+    align-items: flex-end;
+}
+.flex-middle{
+    justify-content:center;
+}
+.flex-bottom{
+    justify-content:flex-end;
+}
+.flex-item {
+    flex: 1;
+}
+.flex-between{
+    justify-content: space-between;
+}
+.color1{
+    color:#fff;
+}
+.color2{
+    color:#000;
+}
+.color3{
+    color:#333;
+}
+.color4{
+    color:#383a53;
+}
+.color5{
+    color:#fded02;
+}
+.bg-blue{
+    background-color: #509fe4;
+}
+.bg-red{
+    background-color: #ff0009;
+}
+.bg-pink{
+    background-color: #ff585f;
+}
+.bg-yellow{
+    background-color: #fded02;
+}
+.bg-white{
+    background-color: white;
+}
+.bg-black-1{
+    background-color: rgba(0,0,0,0.1);
+}
+.size24{
+    font-size: 0.24rem;
+}
+.size28{
+    font-size: 0.28rem;
+}
+.size32{
+    font-size: 0.32rem;
+}
+.size36{
+    font-size: 0.36rem;
+}
+.size40{
+    font-size: 0.40rem;
+}
+.text-center{
+    text-align: center;
+}
+.ptb20{
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
+}
+.pt20{
+    padding-top: 0.2rem;
+}
+.pb20{
+    padding-bottom: 0.2rem;
+}
+.plr20{
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
+}
+.pl20{
+    padding-left: 0.2rem;
+}
+.pr20{
+    padding-right: 0.2rem;
+}
+.ptb30{
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
+}
+.plr30{
+    padding-left: 0.3rem;
+    padding-right: 0.3rem;
+}

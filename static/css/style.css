@@ -1,0 +1,9 @@
+.footer-nav{
+    box-shadow: #666 0px -5px 20px;
+}
+.footer-nav a{
+    border-right: 1px solid #ccc;
+}
+.footer-nav a:last-child{
+    border-right-color: #fff;
+}
