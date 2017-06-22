@@ -1,3 +1,51 @@
+.chosen{
+    width: 4rem;
+    border:10px solid #fdc401;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+.border-y-5{
+    border-bottom: 5px solid #fdc401;
+}
+.circle{
+    width: .8rem;
+    height: .8rem;
+    border-radius: 50%;
+    margin: 0 0.3rem;
+    text-align: center;
+    line-height: 0.8rem;
+}
+.circle.active{
+    color:#fded02
+}
+.number{
+    height: 0.4rem;
+    border: none;
+    border-radius: 0.1rem;
+}
+.touzhu{
+    background-color: #ff585f;
+    border: 3px solid #ec393f;
+    box-shadow: #343233 0px 0px 1px 1px;
+    border-radius: 4px;
+    width: 0.9rem;
+    height: 0.4rem;
+}
+.btn-sub,.btn-sub:before{
+    border-radius: 10px;
+    border: 4px solid #000;
+    height: 0.9rem;
+}
+.btn-sub:before{
+    content: '';
+    width: 100%;
+    position: absolute;
+    left: -4px;
+    bottom: -12px;
+    background: #000;
+    z-index: -1;
+}
+/*底部*/
 .footer-nav{
     box-shadow: #666 0px -5px 20px;
 }

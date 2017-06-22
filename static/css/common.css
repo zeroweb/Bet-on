@@ -1,4 +1,10 @@
-*{margin: 0; padding: 0; }
+html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,address,cite,code,del,dfn,em,img,ins,kbd,q,samp,small,strong,sub,sup,var,b,i,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td {
+    border: 0 none;
+    font-size: 12px;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline
+}
 html {
     line-height: 1.15;
 }
@@ -7,6 +13,10 @@ a{
 }
 .box{
     max-width: 640px;
+    width:100%;
+}
+.border-box{
+    box-sizing: border-box;
 }
 .fixed-bottom{
     position: fixed;
@@ -28,7 +38,6 @@ a{
     flex-flow: row;
     flex-wrap: wrap;
 }
-
 .equal {
    flex: 1;
 }
@@ -66,6 +75,9 @@ a{
 .flex-between{
     justify-content: space-between;
 }
+.flex-around{
+    justify-content: space-around;
+}
 .color1{
     color:#fff;
 }
@@ -80,6 +92,9 @@ a{
 }
 .color5{
     color:#fded02;
+}
+.color6{
+    color:#ff0009;
 }
 .bg-blue{
     background-color: #509fe4;
@@ -99,6 +114,12 @@ a{
 .bg-black-1{
     background-color: rgba(0,0,0,0.1);
 }
+.bg-black-5{
+    background-color: rgba(0,0,0,0.5);
+}
+.bg-white-5{
+    background-color: rgba(255,255,255,0.5);
+}
 .size24{
     font-size: 0.24rem;
 }
@@ -114,8 +135,14 @@ a{
 .size40{
     font-size: 0.40rem;
 }
+.size48{
+    font-size: 0.48rem;
+}
 .text-center{
     text-align: center;
+}
+.pt10{
+    padding-top: 0.1rem;
 }
 .ptb20{
     padding-top: 0.2rem;
@@ -144,4 +171,7 @@ a{
 .plr30{
     padding-left: 0.3rem;
     padding-right: 0.3rem;
+}
+.mt30{
+    margin-top: 0.3rem;
 }
