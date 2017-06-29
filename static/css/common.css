@@ -14,6 +14,8 @@ a{
 .box{
     max-width: 640px;
     width:100%;
+    margin: 0 auto;
+    box-sizing: border-box;
 }
 .border-box{
     box-sizing: border-box;
@@ -87,6 +89,9 @@ a{
 .color3{
     color:#333;
 }
+.color999{
+    color:#999;
+}
 .color4{
     color:#383a53;
 }
@@ -138,11 +143,27 @@ a{
 .size48{
     font-size: 0.48rem;
 }
+.line-h15{
+    line-height: 1.5;
+}
 .text-center{
     text-align: center;
 }
+.block{
+    display: block;
+}
 .pt10{
     padding-top: 0.1rem;
+}
+.pl10{
+    padding-left: 0.1rem;
+}
+.pr10{
+    padding-right: 0.1rem;
+}
+.ptb10{
+    padding-top: 0.1rem;
+    padding-bottom: 0.1rem;
 }
 .ptb20{
     padding-top: 0.2rem;
@@ -171,6 +192,12 @@ a{
 .plr30{
     padding-left: 0.3rem;
     padding-right: 0.3rem;
+}
+.mt10{
+    margin-top: 0.1rem;
+}
+.mt20{
+    margin-top: 0.2rem;
 }
 .mt30{
     margin-top: 0.3rem;
