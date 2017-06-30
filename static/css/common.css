@@ -8,6 +8,9 @@ html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,addre
 html {
     line-height: 1.15;
 }
+ul,li{
+    list-style: none;
+}
 a{
     text-decoration: none;
 }
@@ -79,6 +82,27 @@ a{
 }
 .flex-around{
     justify-content: space-around;
+}
+.alert-box{
+    position: fixed;
+    top:0;
+    bottom:0;
+    left:0;
+    right: 0;
+}
+.alert-main{
+    width: 60%;
+    border-radius: 4px;
+    min-height: 4rem;
+}
+.close{
+    position: absolute;
+    top:-5px;
+    right: -5px;
+    background: #fff;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
 }
 .color1{
     color:#fff;
@@ -164,6 +188,10 @@ a{
 .ptb10{
     padding-top: 0.1rem;
     padding-bottom: 0.1rem;
+}
+.plr10{
+    padding-left: 0.1rem;
+    padding-right: 0.1rem;
 }
 .ptb20{
     padding-top: 0.2rem;

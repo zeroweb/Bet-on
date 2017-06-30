@@ -58,6 +58,28 @@
     height: 30px;
     border-radius: 50%;
 }
+.result-tag{
+    width: 1rem;
+    line-height: 2;
+    text-align: center;
+    border-radius: 4px;
+}
+/*充值*/
+.pay-tag li{
+    border: 1px solid #e5e5e5;
+    padding:2px 5px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    font-size: 0.24rem;
+}
+.pay-tag li:last-child{
+    margin-right: 0;
+}
+.pay-tag li.active{
+    border-color: #ec393f;
+    background: #ec393f;
+    color: #fff;
+}
 /*底部*/
 .footer-nav{
     box-shadow: #666 0px 0px 5px;

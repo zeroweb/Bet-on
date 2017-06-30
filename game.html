@@ -257,7 +257,7 @@
     <div class="turnplate" style="background-image:url(static/images/turnplate-bg.png);background-size:100% 100%; width: 80%;">
         <canvas class="item" id="wheelcanvas" width="422px" height="422px"></canvas>
         <div class="pointer">
-            <div class="num">开始</div>
+            <div class="num">摇号</div>
             <div class="tip">幸运数字</div>
         </div>
     </div>
@@ -269,6 +269,29 @@
     <a href="javascript:;" class="color3 size28 flex-item ptb20 text-center">充值</a>
     <a href="user.html" class="color3 size28 flex-item ptb20 text-center">用户</a>
 </footer>
+<div class="alert-box bg-black-5 flex-wrp flex-center">
+    <div class="bg-white ptb20 plr20 alert-main relative">
+        <div class="text-center size32 line-h15 color6">您的成绩</div>
+        <div class="size28 mt20 flex-wrp flex-center">开奖结果为：<span class="color6 size32">5</span></div>
+        <div class="mt20">
+            <div class="mt20 flex-wrp flex-between flex-align-center">
+                <div class="size24">大小：大</div>
+                <div class="bg-pink color1 result-tag size24">猜中</div>
+            </div>
+            <div class="mt20 flex-wrp flex-between flex-align-center">
+                <div class="size24">单双：单</div>
+                <div class="bg-pink color1 result-tag size24">猜中</div>
+            </div>
+            <div class="mt20 flex-wrp flex-between flex-align-center">
+                <div class="size24">整数：6</div>
+                <div class="bg-black-1 color999 result-tag size24">未猜中</div>
+            </div>
+        </div>
+        <div class="mt30 size24 line-h15 text-center">您赢得 <span class="size28 color6 plr10">120元</span>现金</div>
+        <div class="text-center color999 pb20">快邀请好友一起来玩</div>
+        <div class="close flex-wrp flex-center"><div class="size24 color999">X</div></div>
+    </div>
+</div>
 <script>
     var add1='active bg-black-5'
     var add2='bg-white-5'
@@ -299,6 +322,9 @@
             chosen3++;
             $('.chosen3').text(chosen3)
         }
+    })
+    $('.close').click(function () {
+        $('.alert-box').fadeOut();
     })
 </script>
 </body>
