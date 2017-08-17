@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <title>开宝箱</title>
+    <script src="static/js/media.js"></script>
+    <link rel="stylesheet" href="static/css/common.css">
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/open.css">
+    <link rel="stylesheet" href="static/css/font.css">
+    <script src="static/js/zepto.js"></script>
+    <style>
+        #movekey{
+            position:absolute;
+            top:1%;
+            left:40%;
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg">
+<header class="flex-wrp flex-between bg-black-5 ptb10 plr30 flex-align-center">
+    <div class="flex-wrp flex-align-center">
+        <img src="static/images/user.jpg" alt="" class="user-thumb-home">
+        <div class="color1 size28 pl20">王大锤：120元</div>
+    </div>
+    <a href="play大转盘.html" class="color5 size24">立即充值</a>
+</header>
+<div class="wrapper open-body">
+    <div class="bg rotate"></div>
+    <div class="open-has ">
+        <div class="mod-chest">
+            <div id="mychestclose" class="chest-close show">
+                <div class="gift"></div>
+                <div id="movekey"><img src="./img/key.png"></div>
+                <div class="tips">
+                    <i class="arrow"></i>
+                </div>
+            </div>
+            <div class="chest-open">
+                <div class="mod-chest-cont open-cont">
+                    <div class="content">
+                        <div class="gift">
+                            <div class="icon"></div>
+                        </div>
+                        <div class="func">
+                            <button class="chest-btn">~领取~</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="fixed-bottom flex-wrp bg-red-deep footer-nav">
+    <a href="index.html" class="color7 size28 flex-item ptb20 text-center">首页</a>
+    <a href="rule.html" class="color7 size28 flex-item ptb20 text-center">规则</a>
+    <a href="recharge.html" class="color7 size28 flex-item ptb20 text-center">充值</a>
+    <a href="user.html" class="color7 size28 flex-item ptb20 text-center">用户</a>
+</footer>
+<script>
+    $('.chest-close').click(function () {
+        $(".chest-close").removeClass("show");
+        $(".chest-close").closest(".mod-chest").find(".chest-open").addClass("show");
+    })
+</script>
+</body>
+</html>

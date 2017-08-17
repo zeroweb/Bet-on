@@ -1,305 +1,406 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
-    <title>首页</title>
-    <script src="static/js/media.js"></script>
-    <link rel="stylesheet" href="static/css/common.css">
-    <link rel="stylesheet" href="static/css/style.css">
-    <link rel="stylesheet" href="static/css/font.css">
-    <link href="static/css/play.css" rel="stylesheet" type="text/css">
-    <script src="static/js/zepto.js"></script>
+<meta charset="utf-8">
+<meta name="format-detection" content="telephone=no" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="css/atom.css">
+<link rel="stylesheet" href="css/global.css">
+<link rel="stylesheet" href="css/open.css">
+<style>
+  body{
+    background: url('./img/bg.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+  }
+  #movekey{
+    position:absolute;
+    top:1%;
+    left:40%;
+    display: none;
+  }
+  .myWrap{
+    width: 20%;
+    position: absolute;
+    top:87%;
+    left: 18%;  
+    z-index: 802
+  }
+  .activityRule img,.activityAward img{
+    width: 100%;
+    
+  }
 
-    <script type="text/javascript" src="static/js/jquery-1.10.2.js"></script>
-    <script type="text/javascript" src="static/js/awardRotate.js"></script>
+  .mybox img,.mykey img{
+    margin-right: 7px;
+    width: 20%; 
+  }
+  .mybox p,.mykey p{
+   display: inline; 
+   font-size: 27px;
+  }
+  #myrule{
+    position: absolute;
+    display: none;
+    left: 5%;
+    top:50%;
+    width: 90%;
+    z-index: 997;
+  }
+  #myrule>div img{
+    margin-top: -50%;
+  }
+  #myrule img{
+    width: 100%;
+  }
+  #myget{
+    position: absolute;
+    display: none;
+    left: 5%;
+    top:30%;
+    width: 90%;
+    z-index: 996;
+  }
+  #myget>div>img{
+    margin-top: -50%;
+  }
+  #myget img{
+    width: 100%;
+  }
+  #myget>div ul{
+    position: absolute;
+    width: 95%;
+    left: 3%;
+    top:0;
+    text-align: center;
+  }
+  #myget>div ul li{
+    display: inline-block;
 
-    <script type="text/javascript">
-        var turnplate={
-            restaraunts:[],				//大转盘奖品名称
-            colors:[],					//大转盘奖品区块对应背景颜色
-            outsideRadius:192,			//大转盘外圆的半径
-            textRadius:155,				//大转盘奖品位置距离圆心的距离
-            insideRadius:68,			//大转盘内圆的半径
-            startAngle:0,				//开始角度
+    width: 75px;
+    height: 75px;
+    margin-right: 5px;
+    background: #fff;
+  }
+  /*规则从上方下来*/
+  @keyframes myrulein
+  {
+  0%{
+    left: 5%;
+    top:0%;
+  }
+  100%{
+    left: 5%;
+    top:50%;
+  }
+  }
 
-            bRotate:false				//false:停止;ture:旋转
-        };
+  @-moz-keyframes myrulein
+  {
+  0%{
+    left: 5%;
+    top:0%;
+  }
+  100%{
+    left: 5%;
+    top:50%;
+  }
+  }
 
-        $(document).ready(function(){
-            //动态添加大转盘的奖品与奖品区域背景颜色
-            turnplate.restaraunts = ["0", "1", "2", "3", "4", "5", "6 ", "7", "8", "9"];
-            turnplate.colors = ["#FFF4D6", "#FFFFFF", "#FFF4D6", "#FFFFFF","#FFF4D6", "#FFFFFF", "#FFF4D6", "#FFFFFF","#FFF4D6", "#FFFFFF"];
+  @-webkit-keyframes myrulein
+  {
+  0%{
+    left: 5%;
+    top:0%;
+  }
+  100%{
+    left: 5%;
+    top:50%;
+  }
+  }
 
+  @-o-keyframes myrulein
+  {
+  0%{
+    left: 5%;
+    top:0%;
+  }
+  100%{
+    left: 5%;
+    top:50%;
+  }
+  }
 
-            var rotateTimeOut = function (){
-                $('#wheelcanvas').rotate({
-                    angle:0,
-                    animateTo:2160,
-                    duration:8000,
-                    callback:function (){
-                        alert('网络超时，请检查您的网络设置！');
-                    }
-                });
-            };
+  /*背景淡入*/
+  @keyframes myin
+  {
+  from {opacity: 0.1;}
+  to {opacity: 0.6;}
+  }
 
-            //旋转转盘 item:奖品位置; txt：提示语;
-            var rotateFn = function (item, txt){
-                var angles = item * (360 / turnplate.restaraunts.length) - (360 / (turnplate.restaraunts.length*2));
-                if(angles<270){
-                    angles = 270 - angles;
-                }else{
-                    angles = 360 - angles + 270;
-                }
-                $('#wheelcanvas').stopRotate();
-                $('#wheelcanvas').rotate({
-                    angle:0,
-                    animateTo:angles+1800,
-                    duration:8000,
-                    callback:function (){
-                        $('.pointer').css('lineHeight','5vh')
-                        $('.num').text(txt).css('fontSize','32px');
-                        $('.tip').show();
-                        turnplate.bRotate = !turnplate.bRotate;
-                    }
-                });
-            };
+  @-moz-keyframes myin
+  {
+  from {opacity: 0.1;}
+  to {bopacity: 0.6;}
+  }
 
-            $('.pointer').click(function (){
-                if(turnplate.bRotate)return;
-                turnplate.bRotate = !turnplate.bRotate;
-                //获取随机数(奖品个数范围内)
-                var item = rnd(1,turnplate.restaraunts.length);
-                //奖品数量等于10,指针落在对应奖品区域的中心角度[252, 216, 180, 144, 108, 72, 36, 360, 324, 288]
-                rotateFn(item, turnplate.restaraunts[item-1]);
-                /* switch (item) {
-                 case 1:
-                 rotateFn(252, turnplate.restaraunts[0]);
-                 break;
-                 case 2:
-                 rotateFn(216, turnplate.restaraunts[1]);
-                 break;
-                 case 3:
-                 rotateFn(180, turnplate.restaraunts[2]);
-                 break;
-                 case 4:
-                 rotateFn(144, turnplate.restaraunts[3]);
-                 break;
-                 case 5:
-                 rotateFn(108, turnplate.restaraunts[4]);
-                 break;
-                 case 6:
-                 rotateFn(72, turnplate.restaraunts[5]);
-                 break;
-                 case 7:
-                 rotateFn(36, turnplate.restaraunts[6]);
-                 break;
-                 case 8:
-                 rotateFn(360, turnplate.restaraunts[7]);
-                 break;
-                 case 9:
-                 rotateFn(324, turnplate.restaraunts[8]);
-                 break;
-                 case 10:
-                 rotateFn(288, turnplate.restaraunts[9]);
-                 break;
-                 } */
-                console.log(item);
-            });
-        });
+  @-webkit-keyframes myin
+  {
+  from {opacity: 0.1;}
+  to {opacity: 0.6;}
+  }
 
-        function rnd(n, m){
-            var random = Math.floor(Math.random()*(m-n+1)+n);
-            return random;
+  @-o-keyframes myin
+  {
+  from {opacity: 0.1;}
+  to {opacity: 0.6;}
+  }
 
-        }
-
-
-        //页面所有元素加载完毕后执行drawRouletteWheel()方法对转盘进行渲染
-        window.onload=function(){
-            drawRouletteWheel();
-        };
-
-        function drawRouletteWheel() {
-            var canvas = document.getElementById("wheelcanvas");
-            if (canvas.getContext) {
-                //根据奖品个数计算圆周角度
-                var arc = Math.PI / (turnplate.restaraunts.length/2);
-                var ctx = canvas.getContext("2d");
-                //在给定矩形内清空一个矩形
-                ctx.clearRect(0,0,422,422);
-                //strokeStyle 属性设置或返回用于笔触的颜色、渐变或模式
-                ctx.strokeStyle = "#FFBE04";
-                //font 属性设置或返回画布上文本内容的当前字体属性
-                ctx.font = '32px Microsoft YaHei';
-                for(var i = 0; i < turnplate.restaraunts.length; i++) {
-                    var angle = turnplate.startAngle + i * arc;
-                    ctx.fillStyle = turnplate.colors[i];
-                    ctx.beginPath();
-                    //arc(x,y,r,起始角,结束角,绘制方向) 方法创建弧/曲线（用于创建圆或部分圆）
-                    ctx.arc(211, 211, turnplate.outsideRadius, angle, angle + arc, false);
-                    ctx.arc(211, 211, turnplate.insideRadius, angle + arc, angle, true);
-                    ctx.stroke();
-                    ctx.fill();
-                    //锁画布(为了保存之前的画布状态)
-                    ctx.save();
-
-                    //----绘制奖品开始----
-                    ctx.fillStyle = "#E5302F";
-                    var text = turnplate.restaraunts[i];
-                    var line_height = 17;
-                    //translate方法重新映射画布上的 (0,0) 位置
-                    ctx.translate(211 + Math.cos(angle + arc / 2) * turnplate.textRadius, 211 + Math.sin(angle + arc / 2) * turnplate.textRadius);
-
-                    //rotate方法旋转当前的绘图
-                    ctx.rotate(angle + arc / 2 + Math.PI / 2);
-
-                    /** 下面代码根据奖品类型、奖品名称长度渲染不同效果，如字体、颜色、图片效果。(具体根据实际情况改变) **/
-                    if(text.indexOf("M")>0){//流量包
-                        var texts = text.split("M");
-                        for(var j = 0; j<texts.length; j++){
-                            ctx.font = j == 0?'bold 20px Microsoft YaHei':'16px Microsoft YaHei';
-                            if(j == 0){
-                                ctx.fillText(texts[j]+"M", -ctx.measureText(texts[j]+"M").width, j * line_height);
-                            }else{
-                                ctx.fillText(texts[j], -ctx.measureText(texts[j]).width / 2, j * line_height);
-                            }
-                        }
-                    }else if(text.indexOf("M") == -1 && text.length>6){//奖品名称长度超过一定范围
-                        text = text.substring(0,6)+"||"+text.substring(6);
-                        var texts = text.split("||");
-                        for(var j = 0; j<texts.length; j++){
-                            ctx.fillText(texts[j], -ctx.measureText(texts[j]).width / 2, j * line_height);
-                        }
-                    }else{
-                        //在画布上绘制填色的文本。文本的默认颜色是黑色
-                        //measureText()方法返回包含一个对象，该对象包含以像素计的指定字体宽度
-                        ctx.fillText(text, -ctx.measureText(text).width / 2, 25);
-                    }
-
-                    //添加对应图标
-                    if(text.indexOf("闪币")>0){
-                        var img= document.getElementById("shan-img");
-                        img.onload=function(){
-                            ctx.drawImage(img,-15,10);
-                        };
-                        ctx.drawImage(img,-15,10);
-                    }else if(text.indexOf("谢谢参与")>=0){
-                        var img= document.getElementById("sorry-img");
-                        img.onload=function(){
-                            ctx.drawImage(img,-15,10);
-                        };
-                        ctx.drawImage(img,-15,10);
-                    }
-                    //把当前画布返回（调整）到上一个save()状态之前
-                    ctx.restore();
-                    //----绘制奖品结束----
-                }
-            }
-        }
-
-    </script>
-
+  .notime{
+    display: none;
+    position: absolute;
+    top:60%;
+    left: 50%;
+    z-index: 887;
+    margin-left: -55px;
+  }
+</style>
+<title>开宝箱</title>
 </head>
-<body class="bg-blue">
-<header class="flex-wrp flex-between bg-black-1 ptb20 plr30 flex-align-center">
-    <div class="flex-wrp flex-align-center">
-        <img src="static/images/user.jpg" alt="" class="user-thumb-home">
-        <div class="color2 size28 pl20">王大锤：120元</div>
+
+<body ontouchstart="" class="open-body">
+<!-- 时间未开始 -->
+<div class="notime"><img src='./img/notime.png'></div>
+<!-- 我的获奖信息 -->
+  <div id="myget">
+    <div>
+      <img src="./img/awardList.png">
+      <ul id="prizeList">
+        
+      </ul>
     </div>
-    <a href="javascript:;" class="color5 size24">立即充值</a>
-</header>
-<div class="plr30 ptb30 box">
-    <div class="flex-wrp flex-align-center flex-between">
-        <div class="size28 color4">大小：</div>
-        <div class="flex-wrp flex-align-center">
-            <div class="pr10">数字</div>
-            <input type="number" class="number text-center" />
+  </div>
+<!-- 背景层灰色 -->
+  <div id="myblackground"></div>
+
+
+<!--  -->
+  <div class="wrapper">  
+    <div class="bg rotate"></div>
+    <div class="open-has ">
+      <div class="mod-chest">      
+        <div id="mychestclose" class="chest-close">
+          <div class="gift"></div>
+          <div id="movekey"><img src="./img/key.png"></div>
+          <div class="tips">
+            <i class="arrow"></i>
+          </div>
         </div>
-        <div class="flex-wrp flex-align-center">
-            <div class="pr10">金额</div>
-            <input type="number" class="number text-center" />
-            <div class="color5 pl10">元</div>
-        </div>
-        <a href="javascript:;" class="touzhu flex-wrp flex-center color1">投注</a>
+        <div class="chest-open show">
+          <div class="mod-chest-cont open-cont">
+            <div class="content">
+              <div class="gift">
+                <div class="icon"></div>
+              </div>
+              <div class="func">
+                <button class="chest-btn">~领取~</button>
+              </div>
+            </div>
+          </div>
+        </div>    
+      </div>
     </div>
-    <div class="flex-wrp flex-align-center flex-between mt30">
-        <div class="size28 color4">单双：</div>
-        <div class="flex-wrp flex-align-center">
-            <div class="pr10">数字</div>
-            <input type="number" class="number text-center" />
-        </div>
-        <div class="flex-wrp flex-align-center">
-            <div class="pr10">金额</div>
-            <input type="number" class="number text-center" />
-            <div class="color5 pl10">元</div>
-        </div>
-        <a href="javascript:;" class="touzhu flex-wrp flex-center color1">投注</a>
-    </div>
-    <div class="flex-wrp flex-align-center flex-between mt30">
-        <div class="size28 color4">数字：</div>
-        <div class="flex-wrp flex-align-center">
-            <div class="pr10">数字</div>
-            <input type="number" class="number text-center" />
-        </div>
-        <div class="flex-wrp flex-align-center">
-            <div class="pr10">金额</div>
-            <input type="number" class="number text-center" />
-            <div class="color5 pl10">元</div>
-        </div>
-        <a href="javascript:;" class="touzhu flex-wrp flex-center color1">投注</a>
-    </div>
-</div>
-<div class="plr30">
-    <a href="javascript:;" class="flex-wrp flex-center color1 bg-red border-box relative size28 btn-sub">确认投注</a>
-</div>
-<div class="banner pt20 mt30">
-    <div class="turnplate" style="background-image:url(static/images/turnplate-bg.png);background-size:100% 100%; width: 80%;">
-        <canvas class="item" id="wheelcanvas" width="422px" height="422px"></canvas>
-        <div class="pointer">
-            <div class="num">开始</div>
-            <div class="tip">幸运数字</div>
-        </div>
-    </div>
-</div>
-<div style="height: 1rem;"></div>
-<footer class="fixed-bottom flex-wrp bg-white footer-nav">
-    <a href="index.html" class="color3 size28 flex-item ptb20 text-center">首页</a>
-    <a href="rule.html" class="color3 size28 flex-item ptb20 text-center">规则</a>
-    <a href="javascript:;" class="color3 size28 flex-item ptb20 text-center">充值</a>
-    <a href="user.html" class="color3 size28 flex-item ptb20 text-center">用户</a>
-</footer>
-<script>
-    var add1='active bg-black-5'
-    var add2='bg-white-5'
-    var chosen3=parseInt($('.chosen3').text())
-    function btn(btn1,btn2,chosen,text) {
-        $(btn1).click(function () {
-            $(this).removeClass(add2).addClass(add1)
-            $(btn2).removeClass(add1).addClass(add2)
-            if(chosen&&text){
-                $(chosen).text(text)
-            }
-        })
+  </div>
+  <script type="text/javascript" src="js/zepto.min.js"></script> 
+  <script type="text/javascript">
+
+  
+  $(function(){
+
+    // 获取userid
+    var getUrlParam = function(name){
+        var reg     = new RegExp('(^|&)' + name + '=([^&]*)(&|$)');
+        var result  = window.location.search.substr(1).match(reg);
+        return result ? decodeURIComponent(result[2]) : '';
+    };
+    // 获取到userid
+    var getuserid = getUrlParam('userid');
+
+    // IOS的webview方法
+    function setupWebViewJavascriptBridge(callback) {
+    if (window.WebViewJavascriptBridge) {
+        return callback(WebViewJavascriptBridge); 
     }
-    btn('.big','.small','.chosen1','大');
-    btn('.small','.big','.chosen1','小');
-    btn('.odd','.even','.chosen2','单');
-    btn('.even','.odd','.chosen2','双');
-    btn('.minus','.plus');
-    btn('.plus','.minus');
-    $('.minus').click(function () {
-        if(chosen3>0){
-            chosen3--;
-            $('.chosen3').text(chosen3)
-        }
-    })
-    $('.plus').click(function () {
-        if(chosen3<9){
-            chosen3++;
-            $('.chosen3').text(chosen3)
-        }
-    })
+   if (window.WVJBCallbacks) { 
+      return window.WVJBCallbacks.push(callback); 
+    }
+
+     window.WVJBCallbacks = [callback];
+     var WVJBIframe = document.createElement('iframe');
+     WVJBIframe.style.display = 'none';
+     WVJBIframe.src = 'https://__bridge_loaded__';
+     document.documentElement.appendChild(WVJBIframe);
+
+   setTimeout(function() {
+       document.documentElement.removeChild(WVJBIframe) }, 0);
+    }
+    // 自执行返回对象
+   setupWebViewJavascriptBridge(
+    function(bridge) {}
+   );
+
+   // 判断手机系统
+   var browser = {
+       versions: function () {
+       var u = navigator.userAgent, app = navigator.appVersion;
+       return {//移动终端浏览器版本信息
+       trident: u.indexOf('Trident') > -1, //IE内核
+       presto: u.indexOf('Presto') > -1, //opera内核
+       webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+       gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+       mobile: !!u.match(/AppleWebKit.*Mobile/i) || !!u.match(/MIDP|SymbianOS|NOKIA|SAMSUNG|LG|NEC|TCL|Alcatel|BIRD|DBTEL|Dopod|PHILIPS|HAIER|LENOVO|MOT-|Nokia|SonyEricsson|SIE-|Amoi|ZTE/), //是否为移动终端
+       ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+       android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+       iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者QQHD浏览器
+       iPad: u.indexOf('iPad') > -1, //是否iPad
+       webApp: u.indexOf('Safari') == -1 //是否web应该程序，没有头部与底部
+      };
+      } (),
+      language: (navigator.browserLanguage || navigator.language).toLowerCase()
+    }
+
+
+    // 获取到userid
+    else{
+
+    // 添加页面初始化的请求url、活动类型、以及token
+    var initUrl = 'http://m.jkl.com.cn/box?userid=' + getuserid;
+    var userid;
+    var activity_id;
+    var X_CSRF_TOKEN;
+    var prizeUrl;
+
+    // 页面初始化以后将奖品初始数量返回到页面上
+    function myAjaxinit(){
+    $.get(initUrl,function(data, textStatus){
+
+          // console.log(data);
+          
+          userid = data.data.userid;
+          activity_id = data.data.activity_id;
+          X_CSRF_TOKEN = data.data.token;
+          prizeUrl = 'http://m.jkl.com.cn/box/prizeList?userid=' + userid + '&activity_id=' +activity_id;
+
+          // console.log(prizeUrl);
+          // console.log(userid);
+          // console.log(activity_id);
+          // console.log(X_CSRF_TOKEN);
+          
+          $('#mybox1').html(data.data.box);
+          $('#mykey1').html(data.data.key);
+     })
+    }
+   myAjaxinit();
+
+
+    //点击开箱子的按钮发送的请求 
+    function myAjax(){
+      var getAwardUrl = 'http://m.jkl.com.cn/box/getGameShop?userid=' + userid + '&activity_id=' + activity_id;
+
+        // console.log(getAwardUrl);
+        
+        $.ajax({
+          type: 'GET',
+          url: getAwardUrl,
+          success: function(data, textStatus){ 
+
+           // console.log(data);
+                
+          //如果没有宝箱弹出“没有宝箱”的消息提示 
+                if(data.status == 1){
+                  $(".icon").empty();
+                  var  randomNum = 'thanks';
+                  var myImage =  "<img src=\"img/"+randomNum+".png\">";
+                  $(".icon").append(myImage);
+                  $('.func .chest-btn').html('~宝箱开完了哦~')
+                }
+
+          //如果宝箱和钥匙都有那么则把返回的数据添加到待显示表里 
+                else{
+                  $('#mybox1').html(data.data.box);
+                  $('#mykey1').html(data.data.key);
+                  $(".icon").empty();
+                  // var  randomNum =7; 
+                  var myImage =  "<img src=" + data.data.image + ">";
+                  $(".icon").append(myImage);
+                }
+
+                var mychestclose = document.getElementById('mychestclose');
+                mychestclose.addEventListener("webkitAnimationEnd", function(){
+                $(".chest-close").closest(".open-has").addClass("opened");
+
+                    setTimeout(function(){
+                         $(".chest-close").removeClass("show");
+
+                         $(".chest-close").closest(".mod-chest").find(".chest-open").addClass("show");
+
+                         $("#movekey").css("display","none"); 
+                         setTimeout(function(){
+
+                             $(".chest-open").addClass("blur");
+
+                         },500)
+                  },200);
+                }, false);
+          }
+          })
+    }
+// ----------------------------------------------------------
+
+        var nowDay = new Date(),
+            month  = nowDay.getMonth() + 1+'',
+            date   = nowDay.getDate()+'';
+            myDate = parseInt(month + date);
+
+        if(myDate>829){
+            $(".chest-close").click(function(){ 
+              $(this).unbind();
+              $(this).addClass("shake");
+              var that=this;
+              $("#movekey").css("display","block");
+              myAjax();   
+            });
+// -------------------------------------------------------------
+        $(".chest-btn").click(function(){
+            $(".chest-open").removeClass("show");
+            $(".chest-open").removeClass("blur");
+            $(".chest-close").removeClass("shake");
+            $(".chest-close").addClass("show");
+            $(".chest-close").bind("click",function(){  
+              $(this).unbind();
+              $(this).addClass("shake");
+              $("#movekey").css("display","block");        
+              var that=this;
+              myAjax();
+          }
+        )
+      })
+
+      }  
+      else{
+        $('.notime').css('display','block');
+      }
+
+  }
+
+})
+  
+// -------------------------------------------
 </script>
 </body>
 </html>
+
+  

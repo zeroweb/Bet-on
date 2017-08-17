@@ -5,6 +5,12 @@ html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,addre
     padding: 0;
     vertical-align: baseline
 }
+button, input[type="text"] {
+    border: none;
+    background: none;
+    -webkit-appearance: none;
+    outline: none;
+}
 html {
     line-height: 1.15;
 }
@@ -125,6 +131,16 @@ a{
 .color6{
     color:#ff0009;
 }
+.color7{
+    color:#fdc401;
+}
+.color8{
+    color: #fde097;
+}
+.bg{
+    background: url("../images/bg.png") no-repeat;
+    background-size: cover;
+}
 .bg-blue{
     background-color: #509fe4;
 }
@@ -136,6 +152,12 @@ a{
 }
 .bg-yellow{
     background-color: #fded02;
+}
+.bg-red-deep{
+    background-color: #890d15;
+}
+.bg-body{
+    background-color: #d8a070;
 }
 .bg-white{
     background-color: white;

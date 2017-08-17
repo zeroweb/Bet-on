@@ -22,7 +22,7 @@
     height: 0.4rem;
     border: none;
     border-radius: 0.1rem;
-    width: 0.8rem;
+    width: 1.2rem;
 }
 .touzhu{
     background-color: #ff585f;
@@ -71,6 +71,7 @@
     margin-right: 10px;
     margin-bottom: 10px;
     font-size: 0.24rem;
+    background: rgba(255,255,255,.5);
 }
 .pay-tag li:last-child{
     margin-right: 0;
@@ -85,8 +86,8 @@
     box-shadow: #666 0px 0px 5px;
 }
 .footer-nav a{
-    border-right: 1px solid #ccc;
+    border-right: 1px solid #fdc401;
 }
 .footer-nav a:last-child{
-    border-right-color: #fff;
+    border-right-color: #890d15;
 }
