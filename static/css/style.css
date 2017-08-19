@@ -81,6 +81,11 @@
     background: #ec393f;
     color: #fff;
 }
+.payval{
+    height: 30px;
+    border: none;
+    border-radius: 4px;
+}
 /*底部*/
 .footer-nav{
     box-shadow: #666 0px 0px 5px;
