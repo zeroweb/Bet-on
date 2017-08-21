@@ -56,29 +56,27 @@
         </div>
     </div>
 </div>
-<div class="fixed-bottom" style="padding-bottom: 1rem">
-    <div class="plr30 ptb30 box">
-        <div class="flex-wrp flex-align-center flex-between">
-            <div class="size28 color5">大小：</div>
-            <div><span class="color5 pr10">已投入</span><input type="number" class="number showvalue1 text-center" disabled /><span class="color5 pl20">元</span></div>
-            <div></div>
-            <a href="javascript:;" class="touzhu flex-wrp flex-center color1 sizeedit">投注</a>
+<div class="fixed-bottom flex-wrp flex-center" style="top:0; padding-top: 1rem">
+    <div style="width: 100%">
+        <div class="plr30 ptb30 box flex-wrp flex-around">
+            <div class="flex-wrp flex-cell flex-center">
+                <a href="javascript:;" class="touzhu flex-wrp flex-center color1 sizeedit">大小</a>
+                <div class="mt10 bg-white-5 plr20 line-h15 radius4"><span class="showvalue1 size24">0</span> 元</div>
+            </div>
+            <div class="flex-wrp flex-cell flex-center">
+                <a href="javascript:;" class="touzhu flex-wrp flex-center color1 doubleedit">单双</a>
+                <div class="mt10 bg-white-5 plr20 line-h15 radius4"><span class="showvalue2 size24">0</span> 元</div>
+            </div>
+            <div  class="flex-wrp flex-cell flex-center">
+                <a href="javascript:;" class="touzhu flex-wrp flex-center color1 integeredit">数字</a>
+                <div class="mt10 bg-white-5 plr20 line-h15 radius4"><span class="showvalue3 size24">0</span> 元</div>
+            </div>
         </div>
-        <div class="flex-wrp flex-align-center flex-between mt30">
-            <div class="size28 color5">单双：</div>
-            <div><span class="color5 pr10">已投入</span><input type="number" class="number showvalue2 text-center" disabled /><span class="color5 pl20">元</span></div>
-            <div></div>
-            <a href="javascript:;" class="touzhu flex-wrp flex-center color1 doubleedit">投注</a>
+        <div class="plr30 mt30 flex-wrp flex-center">
+            <a href="open.html" class="flex-wrp flex-center color1 bg-red border-box relative size36 btn-sub">
+                <b class="circle bg-black-5 size28 color7">开</b>
+            </a>
         </div>
-        <div class="flex-wrp flex-align-center flex-between mt30">
-            <div class="size28 color5">数字：</div>
-            <div><span class="color5 pr10">已投入</span> <input type="number" class="number showvalue3 text-center" disabled /><span class="color5 pl20">元</span></div>
-            <div></div>
-            <a href="javascript:;" class="touzhu flex-wrp flex-center color1 integeredit">投注</a>
-        </div>
-    </div>
-    <div class="plr30 mt30">
-        <a href="open.html" class="flex-wrp flex-center color1 bg-red border-box relative size36 btn-sub">确认投注</a>
     </div>
 </div>
 <div style="height: 1rem;"></div>
@@ -155,31 +153,39 @@
     btn('.even','.odd','.chosen2','双');
     btn('.minus','.plus');
     btn('.plus','.minus');
+    $('.sizealert').find('.circle').click(function () {
+        $('.sizeedit').html($(this).text())
+    });
+    $('.doublealert').find('.circle').click(function () {
+        $('.doubleedit').html($(this).text())
+    });
     payvalue1.on('input propertychange',function(){
         var result = $(this).val();
         $(this).val(result)
-        $('.showvalue1').val(result);
+        $('.showvalue1').text(result);
     });
     payvalue2.on('input propertychange',function(){
         var result = $(this).val();
         $(this).val(result)
-        $('.showvalue2').val(result);
+        $('.showvalue2').text(result);
     });
     payvalue3.on('input propertychange',function(){
         var result = $(this).val();
         $(this).val(result)
-        $('.showvalue3').val(result);
+        $('.showvalue3').text(result);
     });
     $('.minus').click(function () {
         if(chosen3>0){
             chosen3--;
-            $('.chosen3').text(chosen3)
+            $('.chosen3').text(chosen3);
+            $('.integeredit').text(chosen3);
         }
     })
     $('.plus').click(function () {
         if(chosen3<9){
             chosen3++;
-            $('.chosen3').text(chosen3)
+            $('.chosen3').text(chosen3);
+            $('.integeredit').text(chosen3);
         }
     })
     $('#size').click(function () {

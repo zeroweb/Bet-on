@@ -32,21 +32,27 @@
     width: 0.9rem;
     height: 0.4rem;
 }
-.btn-sub,.btn-sub:before{
-    border-radius: 10px;
-    border: 4px solid #000;
-    height: 0.8rem;
+.btn-sub{
+    background: url("../images/chest.png");
+    width: 80%;
+    height: 2.1rem;
+    background-size: cover;
 }
-.btn-sub:before{
-    content: '';
-    width: 100%;
-    position: absolute;
-    left: -4px;
-    bottom: -7px;
-    background: #000;
-    z-index: -1;
-    height: 0.6rem;
-}
+/*.btn-sub,.btn-sub:before{*/
+    /*border-radius: 10px;*/
+    /*border: 4px solid #000;*/
+    /*height: 0.8rem;*/
+/*}*/
+/*.btn-sub:before{*/
+    /*content: '';*/
+    /*width: 100%;*/
+    /*position: absolute;*/
+    /*left: -4px;*/
+    /*bottom: -7px;*/
+    /*background: #000;*/
+    /*z-index: -1;*/
+    /*height: 0.6rem;*/
+/*}*/
 .user-thumb{
     width: 80px;
     height: 80px;
@@ -89,6 +95,7 @@
 /*底部*/
 .footer-nav{
     box-shadow: #666 0px 0px 5px;
+    z-index: 99;
 }
 .footer-nav a{
     border-right: 1px solid #fdc401;
