@@ -39,6 +39,9 @@ a{
 .relative{
     position: relative;
 }
+.z99{
+    z-index: 99;
+}
 .overflow-hidden{
     overflow: hidden;
 }
@@ -110,8 +113,18 @@ a{
     height: 30px;
     border-radius: 50%;
 }
+.closebg{
+    position: fixed;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
 .radius4{
     border-radius: 4px;
+}
+.radius50{
+    border-radius: 50%;
 }
 .color1{
     color:#fff;
@@ -140,6 +153,12 @@ a{
 .color8{
     color: #fde097;
 }
+.color9{
+    color: #ae835d;
+}
+.color10{
+    color: #890d15;
+}
 .bg{
     background: url("../images/bg.png") no-repeat;
     background-size: cover;
@@ -153,11 +172,20 @@ a{
 .bg-pink{
     background-color: #ff585f;
 }
+.bg-pink-deep{
+    background-color: #ec393f;
+}
 .bg-yellow{
     background-color: #fded02;
 }
+.bg-yellow-deep{
+    background-color: #e4a404;
+}
 .bg-red-deep{
     background-color: #890d15;
+}
+.bg-999{
+    background: #999;
 }
 .bg-body{
     background-color: #d8a070;

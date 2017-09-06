@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="static/css/font.css">
     <script src="static/js/zepto.js"></script>
 </head>
-<body class="bg">
+<body class="bg" onload="showTime()">
 <header class="flex-wrp flex-between bg-black-5 ptb10 plr30 flex-align-center">
     <div class="flex-wrp flex-align-center">
         <img src="static/images/user.jpg" alt="" class="user-thumb-home">
@@ -56,7 +56,7 @@
         </div>
     </div>
 </div>
-<div class="fixed-bottom flex-wrp flex-center" style="top:0; padding-top: 1rem">
+<div class="fixed-bottom flex-wrp flex-center" style="top: 3.2rem">
     <div style="width: 100%">
         <div class="plr30 ptb30 box flex-wrp flex-around">
             <div class="flex-wrp flex-cell flex-center">
@@ -72,13 +72,22 @@
                 <div class="mt10 bg-white-5 plr20 line-h15 radius4"><span class="showvalue3 size24">0</span> 元</div>
             </div>
         </div>
+        <div class="text-center color9 size24">当前为 <span class="color7 size24">201709060022</span> 期</div>
+        <div class="text-center color9 size24 mt20">本期投注剩余时间：
+            <span class="color10 size24 bg-body radius4 minutes plr10">00</span> 分
+            <span class="color10 size24 bg-body radius4 second plr10">00</span> 秒
+        </div>
         <div class="plr30 mt30 flex-wrp flex-center">
-            <a href="open.html" class="flex-wrp flex-center color1 bg-red border-box relative size36 btn-sub">
-                <b class="circle bg-black-5 size28 color7">开</b>
-            </a>
+            <div class="bg-red-deep color7 plr30 ptb10 radius4" onclick="clickTime();"><span class="plr30 size28 line-h15 btn-touzhu">确认投注</span></div>
+        </div>
+        <div class="ptb30"></div>
+        <div class="flex-wrp flex-center mt30">
+            <div class="bg-pink-deep color1 plr10 ptb10 radius4">上一期开奖结果为：</div>
+            <div class="bg-pink color1 text-center radius50 number-prev size28">5</div>
         </div>
     </div>
 </div>
+
 <div style="height: 1rem;"></div>
 <footer class="fixed-bottom flex-wrp bg-red-deep footer-nav">
     <a href="index.html" class="color7 size28 flex-item ptb20 text-center">首页</a>
@@ -86,8 +95,9 @@
     <a href="recharge.html" class="color7 size28 flex-item ptb20 text-center">充值</a>
     <a href="user.html" class="color7 size28 flex-item ptb20 text-center">用户</a>
 </footer>
-<div class="alert-box flex-center flex-wrp" style="display: none;">
-    <div class="chosen bg-yellow ptb30 sizealert" style="display: none;">
+<div class="alert-box flex-center flex-wrp bg-black-5" style="display: none;">
+    <div class="closebg"></div>
+    <div class="chosen bg-yellow ptb30 sizealert relative z99" style="display: none;">
         <div class="flex-wrp flex-cell flex-around flex-align-center">
             <div class="size48 chosen1">大</div>
             <div class="size24 pt10">0~4为小，5~9为大</div>
@@ -101,7 +111,7 @@
             <a href="javascript:;" class="touzhu flex-wrp flex-center color1" id="size">投注</a>
         </div>
     </div>
-    <div class="chosen bg-yellow ptb30 doublealert" style="display: none;">
+    <div class="chosen bg-yellow ptb30 doublealert relative z99" style="display: none;">
         <div class="flex-wrp flex-cell flex-around flex-align-center">
             <div class="size48 chosen2">双</div>
             <div class="size24 pt10">双：0,2,4,6,8 单：1,3,5,7,9</div>
@@ -115,7 +125,7 @@
             <a href="javascript:;" class="touzhu flex-wrp flex-center color1" id="double">投注</a>
         </div>
     </div>
-    <div class="chosen bg-yellow ptb30 integeralert" style="display: none;">
+    <div class="chosen bg-yellow ptb30 integeralert relative z99" style="display: none;">
         <div class="flex-wrp flex-cell flex-around flex-align-center">
             <div class="size48 chosen3">0</div>
             <div class="size24 pt10">0~9的数字</div>
@@ -129,6 +139,18 @@
             <a href="javascript:;" class="touzhu flex-wrp flex-center color1" id="integer">投注</a>
         </div>
     </div>
+    <div class="chosen bg-yellow ptb30 recoralert relative z99">
+        <div class="flex-wrp flex-cell flex-around flex-align-center">
+            <div class="size28 chosen3">恭喜中奖</div>
+            <div class="mt20"><span class="size28 color6 pr10">9</span>为幸运数字</div>
+        </div>
+        <div class="flex-wrp flex-center mt20">
+            <div class="bg-black-5 plr20 radius4 ptb10 color1">赢得 240 元</div>
+        </div>
+        <div class="flex-wrp flex-center mt30">
+            <a href="record.html" class="touzhu flex-wrp flex-center color1 plr10">查看详情</a>
+        </div>
+    </div>
 </div>
 <script>
     var add1='active bg-black-5'
@@ -137,7 +159,12 @@
     var payvalue1=$(".payvalue1");
     var payvalue2=$(".payvalue2");
     var payvalue3=$(".payvalue3");
-    var alertbox=$('.alert-box')
+    var alertbox=$('.alert-box');
+    var sizealert=$('.sizealert');
+    var doublealert=$('.doublealert');
+    var integeralert=$('.integeralert');
+    var recoralert=$('.recoralert');
+    var closebg=$('.closebg');
     function btn(btn1,btn2,chosen,text) {
         $(btn1).click(function () {
             $(this).removeClass(add2).addClass(add1)
@@ -153,10 +180,10 @@
     btn('.even','.odd','.chosen2','双');
     btn('.minus','.plus');
     btn('.plus','.minus');
-    $('.sizealert').find('.circle').click(function () {
+    sizealert.find('.circle').click(function () {
         $('.sizeedit').html($(this).text())
     });
-    $('.doublealert').find('.circle').click(function () {
+    doublealert.find('.circle').click(function () {
         $('.doubleedit').html($(this).text())
     });
     payvalue1.on('input propertychange',function(){
@@ -188,30 +215,57 @@
             $('.integeredit').text(chosen3);
         }
     })
+    function alertshow(btn,box1,box2,box3,box4,box5,closebg) {
+        $(btn).click(function () {
+            $(box1).show();
+            $(box2).show();
+            $(box3).hide();
+            $(box4).hide();
+            $(box5).hide();
+        })
+        $(closebg).click(function () {
+            $(box1).hide();
+        })
+    }
+    alertshow($('.sizeedit'),alertbox,sizealert,doublealert,integeralert,recoralert,closebg);
+    alertshow($('.doubleedit'),alertbox,doublealert,sizealert,integeralert,recoralert,closebg);
+    alertshow($('.integeredit'),alertbox,integeralert,sizealert,doublealert,recoralert,closebg);
+    alertshow($('#openrecor'),alertbox,recoralert,sizealert,doublealert,integeralert,closebg);
     $('#size').click(function () {
         alertbox.hide();
         $('.sizealert').hide()
-    })
-    $('.sizeedit').click(function () {
-        alertbox.show();
-        $('.sizealert').show()
     })
     $('#double').click(function () {
         alertbox.hide();
         $('.doublealert').hide()
     })
-    $('.doubleedit').click(function () {
-        alertbox.show();
-        $('.doublealert').show()
-    })
     $('#integer').click(function () {
         alertbox.hide();
         $('.integeralert').hide()
     })
-    $('.integeredit').click(function () {
-        alertbox.show();
-        $('.integeralert').show()
-    })
+    function showTime() {
+        var now = new Date();
+        var minutes = now.getMinutes();
+        var second = now.getSeconds();
+        $('.minutes').text(4 - minutes % 5);
+        $('.second').text(60 - second);
+        setTimeout('showTime()',1000);
+    }
+    var click_time;
+    function clickTime() {
+        var cliDate = new Date();
+        var climinutes = cliDate.getMinutes();
+        var clisecond = cliDate.getSeconds();
+        var time=(4 - climinutes % 5)*60+60-clisecond;
+        setTime=setInterval(function(){
+            if(time<=0){
+                clearInterval(setTime);
+                $(".btn-touzhu").text('等待开奖').parent().addClass('bg-999 color2').removeClass('bg-red-deep color7');
+                return;
+            }
+            time--;
+        },1000);
+    }
 </script>
 </body>
 </html>
