@@ -85,6 +85,7 @@
             <div class="bg-pink-deep color1 plr10 ptb10 radius4">上一期开奖结果为：</div>
             <div class="bg-pink color1 text-center radius50 number-prev size28">5</div>
         </div>
+        <div class="text-center mt30"><a href="wqjg.html" class="color2 bg-white-5 radius4 plr20 ptb10">往期开奖结果</a></div>
     </div>
 </div>
 
@@ -215,22 +216,25 @@
             $('.integeredit').text(chosen3);
         }
     })
-    function alertshow(btn,box1,box2,box3,box4,box5,closebg) {
-        $(btn).click(function () {
-            $(box1).show();
-            $(box2).show();
-            $(box3).hide();
-            $(box4).hide();
-            $(box5).hide();
-        })
+    function alertshow(box1,box2,box3,box4,box5) {
+        $(box1).show();
+        $(box2).show();
+        $(box3).hide();
+        $(box4).hide();
+        $(box5).hide();
         $(closebg).click(function () {
             $(box1).hide();
         })
     }
-    alertshow($('.sizeedit'),alertbox,sizealert,doublealert,integeralert,recoralert,closebg);
-    alertshow($('.doubleedit'),alertbox,doublealert,sizealert,integeralert,recoralert,closebg);
-    alertshow($('.integeredit'),alertbox,integeralert,sizealert,doublealert,recoralert,closebg);
-    alertshow($('#openrecor'),alertbox,recoralert,sizealert,doublealert,integeralert,closebg);
+    $('.sizeedit').click(function () {
+        alertshow(alertbox,sizealert,doublealert,integeralert,recoralert);
+    })
+    $('.doubleedit').click(function () {
+        alertshow(alertbox,doublealert,sizealert,integeralert,recoralert);
+    })
+    $('.integeredit').click(function () {
+        alertshow(alertbox,integeralert,sizealert,doublealert,recoralert);
+    })
     $('#size').click(function () {
         alertbox.hide();
         $('.sizealert').hide()
@@ -247,20 +251,29 @@
         var now = new Date();
         var minutes = now.getMinutes();
         var second = now.getSeconds();
-        $('.minutes').text(4 - minutes % 5);
-        $('.second').text(60 - second);
+        $('.minutes').text( "0" + (4 - minutes % 5));
+        if(second>51){
+            $('.second').text("0" + (60 - second));
+        }else if(second>=1){
+            $('.second').text(60 - second);
+        }else{
+            $('.second').text("00");
+        };
         setTimeout('showTime()',1000);
     }
-    var click_time;
     function clickTime() {
         var cliDate = new Date();
         var climinutes = cliDate.getMinutes();
         var clisecond = cliDate.getSeconds();
         var time=(4 - climinutes % 5)*60+60-clisecond;
         setTime=setInterval(function(){
+            if(time<=59){
+                $(".btn-touzhu").text('等待开奖').parent().addClass('bg-999 color2').removeClass('bg-red-deep color7');
+            }
             if(time<=0){
                 clearInterval(setTime);
-                $(".btn-touzhu").text('等待开奖').parent().addClass('bg-999 color2').removeClass('bg-red-deep color7');
+                alertshow(alertbox,recoralert,sizealert,doublealert,integeralert);
+                $(".btn-touzhu").text('确定投注').parent().addClass('bg-red-deep color7').removeClass('bg-999 color2');
                 return;
             }
             time--;
